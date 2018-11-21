@@ -2,16 +2,16 @@ package ru.stqa.java_qa.sandbox;
 
 public class Point {
 
-    private double x;
-    private double y;
+    public double x;
+    public double y;
 
     public Point(double xPosition, double yPosition) {
-        x = xPosition;
-        y = yPosition;
+        this.x = xPosition;
+        this.y = yPosition;
     }
 
-    public double distanceTo(Point other) {
-        return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
+    public double distance(Point p2) {
+        return Math.sqrt(Math.pow(x - p2.x, 2) + Math.pow(y - p2.y, 2));
     }
 }
 

@@ -60,11 +60,17 @@ public class GroupCreationTests {
     wd.findElement(By.linkText("groups")).click();
   }
 
+  private void logOut() {
+    wd.findElement(By.linkText("Logout")).click();
+  }
+
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
-    wd.findElement(By.linkText("Logout")).click();
+    logOut();
     wd.quit();
 
   }
+
+
 
 }

@@ -23,7 +23,7 @@ public class AddAddressBookEntry {
   public void testAddAddressBookEntry() throws Exception {
 
     initNewBookEntry();
-    fillBookEntryForm(new BookEntryNameInfo("Ivan", "Ivanovich", "Ivanov"), new BookEntryCompanyInfo("Software testing", "Software QA", "Moscow, Lenina 44"), new BookEntryPhoneInfo("495555555", "4995555555", "9995556555"), new BookEntryEmailsInfo("4955556555@test.ru", "9185556555@test.ru", "4995556555@test.ru"));
+    fillBookEntryForm(new ContactDate("Java course","Soft QA","Moscow, Lenina 44","1@qa.ru","2@qa.ru", "3@qa.tu", "Ivan","Ivanov","Ivanovich","5555555","666666","777777"));
     submitGroupCreation();
     gotoBookEntries();
 
@@ -37,31 +37,31 @@ public class AddAddressBookEntry {
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void fillBookEntryForm(BookEntryNameInfo bookEntryNameInfo, BookEntryCompanyInfo bookEntryCompanyInfo, BookEntryPhoneInfo bookEntryPhoneInfo, BookEntryEmailsInfo bookEntryEmailsInfo) {
+  private void fillBookEntryForm(ContactDate contactDate) {
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(bookEntryNameInfo.getFirstname());
+    wd.findElement(By.name("firstname")).sendKeys(contactDate.getFirstname());
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(bookEntryNameInfo.getMiddlename());
+    wd.findElement(By.name("middlename")).sendKeys(contactDate.getMiddlename());
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(bookEntryNameInfo.getLastname());
+    wd.findElement(By.name("lastname")).sendKeys(contactDate.getLastname());
     wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys(bookEntryCompanyInfo.getTitle());
+    wd.findElement(By.name("title")).sendKeys(contactDate.getTitle());
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(bookEntryCompanyInfo.getCompany());
+    wd.findElement(By.name("company")).sendKeys(contactDate.getCompany());
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(bookEntryCompanyInfo.getAddress());
+    wd.findElement(By.name("address")).sendKeys(contactDate.getAddress());
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(bookEntryPhoneInfo.getHome());
+    wd.findElement(By.name("home")).sendKeys(contactDate.getHome());
     wd.findElement(By.name("work")).clear();
-    wd.findElement(By.name("work")).sendKeys(bookEntryPhoneInfo.getWork());
+    wd.findElement(By.name("work")).sendKeys(contactDate.getWork());
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(bookEntryPhoneInfo.getMobile());
+    wd.findElement(By.name("mobile")).sendKeys(contactDate.getMobile());
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(bookEntryEmailsInfo.getEmail());
+    wd.findElement(By.name("email")).sendKeys(contactDate.getEmail());
     wd.findElement(By.name("email2")).clear();
-    wd.findElement(By.name("email2")).sendKeys(bookEntryEmailsInfo.getEmail1());
+    wd.findElement(By.name("email2")).sendKeys(contactDate.getEmail1());
     wd.findElement(By.name("email3")).clear();
-    wd.findElement(By.name("email3")).sendKeys(bookEntryEmailsInfo.getEmail2());
+    wd.findElement(By.name("email3")).sendKeys(contactDate.getEmail2());
   }
 
   private void initNewBookEntry() {

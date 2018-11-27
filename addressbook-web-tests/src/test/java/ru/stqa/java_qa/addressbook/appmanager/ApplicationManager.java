@@ -1,24 +1,22 @@
-package ru.stqa.java_qa.addressbook;
+package ru.stqa.java_qa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.java_qa.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
     FirefoxDriver wd;
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
-      wd = new FirefoxDriver();
-      wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-      wd.get("http://localhost/addressbook");
-      login("admin", "secret");
+    public void init() {
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.get("http://localhost/addressbook");
+        login("admin", "secret");
     }
 
-    private void login(String username, String password) {
+    public void login(String username, String password) {
       wd.findElement(By.name("user")).clear();
       wd.findElement(By.name("user")).sendKeys(username);
       wd.findElement(By.name("pass")).clear();
@@ -26,19 +24,19 @@ public class TestBase {
       wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
-    protected void returnToGroupPage() {
+    public void returnToGroupPage() {
       wd.findElement(By.linkText("group page")).click();
     }
 
-    protected void submitGroupCreation() {
+    public void submitGroupCreation() {
       wd.findElement(By.name("submit")).click();
     }
 
-    protected void initGroupCreation() {
+    public void initGroupCreation() {
       wd.findElement(By.name("new")).click();
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
       wd.findElement(By.name("group_name")).clear();
       wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
       wd.findElement(By.name("group_header")).click();
@@ -49,19 +47,17 @@ public class TestBase {
       wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    protected void gotoGroupPage() {
+    public void gotoGroupPage() {
       wd.findElement(By.linkText("groups")).click();
     }
 
-    private void logOut() {
+    public void logOut() {
       wd.findElement(By.linkText("Logout")).click();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-      logOut();
-      wd.quit();
-
+    public void stop() {
+        logOut();
+        wd.quit();
     }
 
     public void deleteSelectedGroups() {

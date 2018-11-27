@@ -1,10 +1,11 @@
-package ru.stqa.java_qa.addressbook;
+package ru.stqa.java_qa.addressbook.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.stqa.java_qa.addressbook.model.ContactDate;
 
 import java.util.concurrent.TimeUnit;
 

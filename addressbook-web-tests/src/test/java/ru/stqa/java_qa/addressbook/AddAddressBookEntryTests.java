@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class AddAddressBookEntry {
+public class AddAddressBookEntryTests {
   FirefoxDriver wd;
 
   @BeforeClass(alwaysRun = true)

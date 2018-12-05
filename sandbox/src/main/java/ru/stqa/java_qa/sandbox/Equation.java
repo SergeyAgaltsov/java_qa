@@ -31,9 +31,6 @@ public class Equation {
             n = -1;
         }
 
-
-
-
     }
 
     public int rootNubmer(){

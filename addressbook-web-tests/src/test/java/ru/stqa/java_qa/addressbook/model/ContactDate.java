@@ -13,8 +13,9 @@ public class ContactDate {
     private final String home;
     private final String work;
     private final String mobile;
+    private String group;
 
-    public ContactDate(String title, String company, String address,String email, String email2,String email3,String firstname,String middlename,String lastname, String home, String work, String mobile) {
+    public ContactDate(String title, String company, String address,String email, String email2,String email3,String firstname,String middlename,String lastname, String home, String work, String mobile, String group) {
         this.title = title;
         this.company = company;
         this.address = address;
@@ -27,6 +28,7 @@ public class ContactDate {
         this.home = home;
         this.work = work;
         this.mobile = mobile;
+        this.group = group;
     }
 
     public String getTitle() {
@@ -75,5 +77,9 @@ public class ContactDate {
 
     public String getMobile() {
         return mobile;
+    }
+
+    public String getGroup() {
+        return group;
     }
 }

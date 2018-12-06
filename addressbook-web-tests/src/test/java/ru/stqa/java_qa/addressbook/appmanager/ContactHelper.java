@@ -43,8 +43,12 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void gotoContact() {
+    public void returnToContact() {
         click(By.id("content"));
+    }
+
+    public void gotoContactPage() {
+        click(By.linkText("home"));
     }
 
     public void submitAddContact() {

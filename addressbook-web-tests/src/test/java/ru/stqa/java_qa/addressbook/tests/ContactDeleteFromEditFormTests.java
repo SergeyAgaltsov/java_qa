@@ -7,6 +7,7 @@ public class ContactDeleteFromEditFormTests extends TestBase {
 
     @Test
     public void testContactDeleteFromEditForm(){
+        app.getContactHelper().gotoContactPage();
         app.getContactHelper().initContactModification();
         app.getContactHelper().deleteContactFromEditForm();
     }

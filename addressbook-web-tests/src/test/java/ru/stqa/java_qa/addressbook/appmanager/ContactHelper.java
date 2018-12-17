@@ -1,12 +1,16 @@
 package ru.stqa.java_qa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import ru.stqa.java_qa.addressbook.model.ContactDate;
+import ru.stqa.java_qa.addressbook.model.ContactData;
+import java.util.List;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -21,22 +25,22 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void fillContactForm(ContactDate contactDate, boolean creation) {
-        type(By.name("firstname"),contactDate.getFirstname());
-        type(By.name("middlename"),contactDate.getMiddlename());
-        type(By.name("lastname"),contactDate.getLastname());
-        type(By.name("title"),contactDate.getTitle());
-        type(By.name("company"),contactDate.getCompany());
-        type(By.name("address"),contactDate.getAddress());
-        type(By.name("home"),contactDate.getHome());
-        type(By.name("work"),contactDate.getWork());
-        type(By.name("mobile"),contactDate.getMobile());
-        type(By.name("email"),contactDate.getEmail());
-        type(By.name("email2"),contactDate.getEmail2());
-        type(By.name("email3"),contactDate.getEmail3());
+    public void fillContactForm(ContactData contactData, boolean creation) {
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("middlename"), contactData.getMiddlename());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("title"), contactData.getTitle());
+        type(By.name("company"), contactData.getCompany());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHome());
+        type(By.name("work"), contactData.getWork());
+        type(By.name("mobile"), contactData.getMobile());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
 
         if (creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactDate.getGroup());
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -64,8 +68,8 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@value='Update']"));
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteContactFromEditForm() {
@@ -80,7 +84,7 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void createContact(ContactDate contact, boolean creation) {
+    public void createContact(ContactData contact, boolean creation) {
         initAddContact();
         fillContactForm(contact,true);
         submitAddContact();
@@ -89,6 +93,17 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("selected[]"));
+        for (WebElement element : elements) {
+            String name = element.getText();
+            ContactData contact = new ContactData(null,null,null,null,null,null,null,null,null,null,null,null,null);
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
 

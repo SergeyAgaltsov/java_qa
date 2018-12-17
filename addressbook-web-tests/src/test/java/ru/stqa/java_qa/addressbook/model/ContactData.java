@@ -1,6 +1,6 @@
 package ru.stqa.java_qa.addressbook.model;
 
-public class ContactDate {
+public class ContactData {
     private final String title;
     private final String company;
     private final String address;
@@ -15,7 +15,7 @@ public class ContactDate {
     private final String mobile;
     private String group;
 
-    public ContactDate(String title, String company, String address,String email, String email2,String email3,String firstname,String middlename,String lastname, String home, String work, String mobile, String group) {
+    public ContactData(String title, String company, String address, String email, String email2, String email3, String firstname, String middlename, String lastname, String home, String work, String mobile, String group) {
         this.title = title;
         this.company = company;
         this.address = address;
